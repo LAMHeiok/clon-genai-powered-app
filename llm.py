@@ -1,4 +1,4 @@
-import json, os, toml, streamlit
+import json, os, toml, streamlit as st
 from openai import OpenAI
 
 # Load API key from credentials.txt or secrets manager
@@ -7,7 +7,7 @@ if os.path.exists(file_path):
     with open(file_path, 'r') as f:
         secrets = toml.load(f)
 else:
-    secrets = streamlit.secrets
+    secrets = st.secrets
 
 
 def answer(system_prompt, user_prompt, model_type="github"):
