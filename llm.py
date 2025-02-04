@@ -15,7 +15,7 @@ def answer(system_prompt, user_prompt, model_type="github"):
         print("Answer using Github API")
         endpoint = "https://models.inference.ai.azure.com"
         
-
+        print(secrets)
         if 'GITHUB' not in secrets and 'GITHUB_API_KEY' not in secrets:
             # throw an error if the API key is not found
             raise ValueError("Github API key not found")
