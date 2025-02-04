@@ -1,4 +1,4 @@
-import streamlit as st, llm, json
+import streamlit, llm, json
 
 # Request LLM to generate questions in JSON format
 def generate_questions(topic, num_questions):
@@ -16,22 +16,22 @@ def generate_questions(topic, num_questions):
 
 # Handle the button click event
 def generate_question_handler():
-    # Get the topic and num_questions from st.session_state
-    topic = st.session_state["topic"]
-    num_questions = st.session_state["num_questions"]
+    # Get the topic and num_questions from streamlit.session_state
+    topic = streamlit.session_state["topic"]
+    num_questions = streamlit.session_state["num_questions"]
     
     # Generate questions
     questions = generate_questions(topic, num_questions)
     
     # Show questions generated
-    st.write("Generated Questions:")
-    st.json(questions)
+    streamlit.write("Generated Questions:")
+    streamlit.json(questions)
 
 # Streamlit sidebar for input
-with st.sidebar:  # The input widgets are placed in the sidebar
-    st.title("Quiz Generator")
-    st.session_state["topic"] = st.text_input("Enter the topic:", "")
-    st.session_state["num_questions"] = st.number_input("Number of questions:", min_value=1, max_value=100, value=5)
+with streamlit.sidebar:  # The input widgets are placed in the sidebar
+    streamlit.title("Quiz Generator")
+    streamlit.session_state["topic"] = streamlit.text_input("Enter the topic:", "")
+    streamlit.session_state["num_questions"] = streamlit.number_input("Number of questions:", min_value=1, max_value=100, value=5)
     
-    if st.button("Generate Questions"):
+    if streamlit.button("Generate Questions"):
         generate_question_handler()
